@@ -1,186 +1,767 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Privacy Policy – Red Flags Nights</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Red Flags Nights — Jeu d’ambiance 18+</title>
+    <meta name="description"
+        content="Red Flags Nights est un jeu d’ambiance mobile 18+ pour animer les soirées entre amis. Un seul téléphone, des choix, des dates douteux et beaucoup de débats." />
     <style>
+        :root {
+            --bg0: #020314;
+            --bg1: #050816;
+            --surface: #020617;
+            --surface2: #0b1026;
+            --stroke: #4B5563;
+            --stroke2: #111827;
+
+            --text: #F9FAFB;
+            --text2: #E5E7EB;
+            --muted: #9CA3AF;
+            --muted2: #6B7280;
+
+            --pink: #FF3B81;
+            --cyan: #2CE3FF;
+            --yellow: #FFC857;
+            --green: #22C55E;
+            --beta: #BBF7D0;
+            --orange: #F59E0B;
+            --violet: #A855FF;
+
+            --r24: 24px;
+            --r20: 20px;
+            --r16: 16px;
+
+            --shadow: 0 18px 30px rgba(0, 0, 0, .75);
+            --shadowSoft: 0 10px 18px rgba(0, 0, 0, .55);
+
+            --grad-chip: linear-gradient(90deg, var(--cyan), var(--violet));
+            --grad-cta: linear-gradient(90deg, var(--pink), #FF5555, var(--yellow));
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            max-width: 900px;
-            margin: 40px auto;
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(1200px 700px at 20% -10%, rgba(44, 227, 255, .18), transparent 60%),
+                radial-gradient(900px 600px at 90% 10%, rgba(255, 59, 129, .16), transparent 55%),
+                linear-gradient(180deg, var(--bg1), var(--bg0));
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .container {
+            width: min(1080px, 92vw);
+            margin: 0 auto
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1.2px solid var(--stroke);
+            border-radius: var(--r24);
+            box-shadow: var(--shadow);
+        }
+
+        .topbar {
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+            background: rgba(2, 3, 20, .55);
+            border-bottom: 1px solid rgba(75, 85, 99, .35);
+            z-index: 5;
+        }
+
+        .topbar .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 240px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
+            background: radial-gradient(circle at 30% 30%, rgba(44, 227, 255, .45), transparent 55%),
+                radial-gradient(circle at 70% 70%, rgba(255, 59, 129, .35), transparent 55%),
+                #07102b;
+            border: 1px solid rgba(75, 85, 99, .55);
+            box-shadow: var(--shadowSoft);
+            display: grid;
+            place-items: center;
+        }
+
+        .logo svg {
+            display: block
+        }
+
+        .brandTitle {
+            line-height: 1.05;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brandTitle .rf {
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--pink);
+            letter-spacing: .2px
+        }
+
+        .brandTitle .n {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text2)
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(34, 197, 94, .75);
+            border-radius: 999px;
+            padding: 8px 12px;
+            color: var(--beta);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .4px;
+            white-space: nowrap;
+            background: rgba(34, 197, 94, .06);
+        }
+
+        .pill .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 99px;
+            background: var(--green);
+            box-shadow: 0 0 18px rgba(34, 197, 94, .45)
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .nav a {
+            font-size: 13px;
+            color: var(--muted);
+            padding: 8px 10px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+        }
+
+        .nav a:hover {
+            color: var(--text2);
+            border-color: rgba(75, 85, 99, .45);
+            background: rgba(2, 6, 23, .55);
+        }
+
+        .hero {
+            padding: 28px 0 18px;
+        }
+
+        .heroGrid {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .heroMain {
+            padding: 26px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heroMain::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background:
+                radial-gradient(700px 340px at 15% 10%, rgba(44, 227, 255, .16), transparent 60%),
+                radial-gradient(650px 320px at 85% 25%, rgba(255, 59, 129, .14), transparent 60%);
+            pointer-events: none;
+        }
+
+        .heroMain>* {
+            position: relative
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--surface);
+            background: var(--grad-chip);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, .35);
+        }
+
+        .chip small {
+            font-weight: 800;
+            opacity: .9;
+            letter-spacing: .2px
+        }
+
+        .kicker {
+            margin: 14px 0 6px;
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: .2px;
+        }
+
+        .kicker .accent {
+            color: var(--pink)
+        }
+
+        .sub {
+            margin: 0 0 16px;
+            color: var(--text2);
+            font-size: 14px;
+            line-height: 1.55;
+            max-width: 58ch;
+        }
+
+        .ctaRow {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center
+        }
+
+        .ctaPrimary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 54px;
+            padding: 0 18px;
+            border-radius: 22px;
+            font-weight: 800;
+            font-size: 16px;
+            color: #0B0410;
+            background: var(--grad-cta);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, .5);
+            border: 0;
+            cursor: pointer;
+        }
+
+        .ctaSecondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 48px;
             padding: 0 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text2);
+            background: transparent;
+            border: 1.1px solid var(--muted2);
+            cursor: pointer;
+        }
+
+        .note18 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 14px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .badge18 {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(245, 158, 11, .75);
+            color: #FFD9A2;
+            background: rgba(245, 158, 11, .08);
+            font-weight: 800;
+            letter-spacing: .2px;
+        }
+
+        .heroSide {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .stat {
+            border: 1px solid rgba(75, 85, 99, .45);
+            background: rgba(2, 6, 23, .55);
+            border-radius: 20px;
+            padding: 14px 14px;
+            box-shadow: var(--shadowSoft);
+        }
+
+        .stat h4 {
+            margin: 0 0 6px;
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 700;
+            letter-spacing: .25px;
+        }
+
+        .stat p {
+            margin: 0;
+            color: var(--text2);
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        .stat b {
+            color: var(--text);
+            font-weight: 800
+        }
+
+        .section {
+            padding: 14px 0;
+        }
+
+        .sectionHeader {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 14px;
+            margin: 0 0 12px;
+        }
+
+        .sectionHeader h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: .2px;
+        }
+
+        .sectionHeader h2 .accent {
+            color: var(--pink)
+        }
+
+        .sectionHeader .hint {
+            color: var(--muted);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .grid3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .tile {
+            padding: 16px 16px;
+            border-radius: 22px;
+            border: 1px solid rgba(75, 85, 99, .45);
+            background: rgba(2, 6, 23, .55);
+            box-shadow: var(--shadowSoft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tile::after {
+            content: "";
+            position: absolute;
+            inset: auto -40px -40px auto;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, rgba(44, 227, 255, .18), transparent 60%);
+            transform: rotate(10deg);
+            pointer-events: none;
+        }
+
+        .tile h3 {
+            margin: 0 0 6px;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .tile p {
+            margin: 0;
+            font-size: 13px;
             line-height: 1.5;
+            color: var(--muted);
         }
 
-        h1,
-        h2 {
-            line-height: 1.25;
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
 
-        hr {
-            margin: 48px 0;
+        .step {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 14px 14px;
+            border-radius: 22px;
+            border: 1px solid rgba(75, 85, 99, .45);
+            background: rgba(2, 6, 23, .55);
+            box-shadow: var(--shadowSoft);
+        }
+
+        .num {
+            flex: 0 0 auto;
+            width: 34px;
+            height: 34px;
+            border-radius: 14px;
+            background: rgba(255, 59, 129, .14);
+            border: 1px solid rgba(255, 59, 129, .55);
+            display: grid;
+            place-items: center;
+            font-weight: 900;
+            color: var(--pink);
+        }
+
+        .step strong {
+            display: block;
+            font-size: 13px;
+            color: var(--text2);
+            font-weight: 800;
+            margin: 0 0 2px;
+        }
+
+        .step span {
+            display: block;
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.45;
+        }
+
+        .finalCta {
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .finalCta::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background:
+                radial-gradient(700px 260px at 15% 30%, rgba(255, 59, 129, .16), transparent 60%),
+                radial-gradient(700px 260px at 85% 30%, rgba(255, 200, 87, .14), transparent 60%);
+            pointer-events: none;
+        }
+
+        .finalCta>* {
+            position: relative
+        }
+
+        .finalCta h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .finalCta p {
+            margin: 6px 0 0;
+            font-size: 13px;
+            color: var(--muted);
+            max-width: 70ch;
+            line-height: 1.45;
+        }
+
+        footer {
+            padding: 26px 0 36px;
+            color: var(--muted2);
+            font-size: 12px;
+        }
+
+        .footerRow {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(75, 85, 99, .35);
+            padding-top: 14px;
+        }
+
+        @media (max-width: 920px) {
+            .heroGrid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media (max-width: 760px) {
+            .grid3 {
+                grid-template-columns: 1fr
+            }
+
+            .topbar .row {
+                gap: 10px
+            }
+
+            .nav {
+                display: none
+            }
+
+            .kicker {
+                font-size: 22px
+            }
         }
     </style>
 </head>
 
 <body>
+    <header class="topbar">
+        <div class="container">
+            <div class="row">
+                <a class="brand" href="#top" aria-label="Accueil">
+                    <div class="logo" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img"
+                            aria-hidden="true">
+                            <g>
+                                <rect x="0" y="0" width="200" height="200" fill="#020617" stroke="#111827"
+                                    stroke-width="1" />
+                                <g transform="translate(36,36)">
+                                    <rect x="0" y="0" width="128" height="128" rx="28" fill="#050816" />
+                                    <rect x="10" y="10" width="108" height="108" rx="24" fill="#020617" />
+                                    <path d="M36 86 L64 50 L92 86" stroke="#2CE3FF" stroke-width="5"
+                                        stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                    <circle cx="64" cy="36" r="5" fill="#FF3B81" />
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="brandTitle">
+                        <span class="rf">Red Flags</span>
+                        <span class="n">Nights</span>
+                    </div>
+                </a>
 
-    <h1>Privacy Policy – Red Flags Nights</h1>
-    <p><em>Last updated: January 6, 2026</em></p>
+                <nav class="nav" aria-label="Navigation">
+                    <a href="#concept">Concept</a>
+                    <a href="#how">Comment ça marche</a>
+                    <a href="#why">Pourquoi ça marche</a>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-    <h2>Data Controller</h2>
-    <p>
-        Publisher of the <em>Red Flags Nights</em> application<br>
-        Contact: <a href="mailto:guillaume.barthe.pro@gmail.com">guillaume.barthe.pro@gmail.com</a>
-    </p>
+    <main id="top">
+        <section class="hero">
+            <div class="container">
+                <div class="heroGrid">
+                    <div class="card heroMain">
+                        <div class="chip"><small>JEU D’AMBIANCE</small> • un seul téléphone</div>
 
-    <h2>App Description</h2>
-    <p>
-        <em>Red Flags Nights</em> is a local party game (2–6 players) with no user accounts and no cloud features.
-    </p>
+                        <h1 class="kicker">
+                            Créez des <span class="accent">dates douteux</span> à base de flags,
+                            et regardez-les devenir absurdes.
+                        </h1>
 
-    <h2>Data Processed</h2>
-    <ul>
-        <li><strong>User-provided data (local only)</strong>: player first names or nicknames, stored exclusively on the
-            device.</li>
-        <li><strong>Game content</strong>: card texts (“flags”) are embedded directly in the application code and are
-            not personal data.</li>
-        <li><strong>Advertising data (automatic)</strong>: device identifiers and technical information collected by the
-            Google Mobile Ads (AdMob) SDK.</li>
-    </ul>
+                        <p class="sub">
+                            Red Flags Nights est un jeu mobile 18+ pour animer les soirées entre amis.
+                            À tour de rôle, vous acceptez ou refusez des “flags” qui transforment progressivement votre
+                            personnage
+                            en un mélange de contradictions de plus en plus drôle.
+                        </p>
 
-    <h2>Purposes</h2>
-    <ul>
-        <li>Local game functionality.</li>
-        <li>Display of interstitial ads, aggregated ad performance measurement, and fraud prevention.</li>
-    </ul>
+                        <div class="ctaRow">
+                            <button class="ctaPrimary" type="button"
+                                onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">
+                                Voir le gameplay
+                            </button>
+                            <button class="ctaSecondary" type="button"
+                                onclick="document.getElementById('concept').scrollIntoView({behavior:'smooth'})">
+                                Découvrir le concept
+                            </button>
+                        </div>
 
-    <h2>Legal Basis</h2>
-    <ul>
-        <li>Performance of a contract (app functionality).</li>
-        <li>Consent (personalized advertising via CMP/UMP).</li>
-        <li>Legitimate interest (non-personalized ads, security and fraud prevention).</li>
-    </ul>
+                        <div class="note18">
+                            <span class="badge18">18+</span>
+                            <span>Contenu mature (humour, gêne, sexualité).</span>
+                        </div>
+                    </div>
 
-    <h2>Data Sharing</h2>
-    <p>
-        Data sharing is limited to Google / AdMob for advertising services.<br>
-        Google Privacy Policy:
-        <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>
-    </p>
+                    <aside class="card heroSide" aria-label="Points clés">
+                        <div class="stat">
+                            <h4>Format</h4>
+                            <p><b>Pass-the-phone</b> : chacun joue son tour sur le même téléphone.</p>
+                        </div>
+                        <div class="stat">
+                            <h4>Règle</h4>
+                            <p>Un flag apparaît → <b>ACCEPTER</b> ou <b>STOP</b>.</p>
+                        </div>
+                        <div class="stat">
+                            <h4>But</h4>
+                            <p><b>Pas de score</b>. Juste des choix, du rire, et des débats.</p>
+                        </div>
+                        <div class="stat">
+                            <h4>Final</h4>
+                            <p>Récap des personnages créés quand tout le monde a fui.</p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
 
-    <h2>Consent and Advertising</h2>
-    <ul>
-        <li>Consent is managed via CMP/UMP for the EU, EEA, UK, and Switzerland.</li>
-        <li>Non-personalized ads are served if consent for personalized advertising is not given.</li>
-    </ul>
+        <section class="section" id="concept">
+            <div class="container">
+                <div class="sectionHeader">
+                    <h2>Le <span class="accent">concept</span></h2>
+                    <div class="hint">rapide à expliquer • immédiat à jouer</div>
+                </div>
 
-    <h2>What We Do Not Do</h2>
-    <ul>
-        <li>No user accounts and no cloud storage.</li>
-        <li>No SDKs other than Google Mobile Ads.</li>
-        <li>No proprietary analytics, no geolocation, no cross-app tracking, and no data selling.</li>
-    </ul>
+                <div class="grid3">
+                    <div class="tile">
+                        <h3>Un date fictif par joueur</h3>
+                        <p>Chaque joueur construit son propre personnage à partir de flags (traits, habitudes,
+                            comportements).</p>
+                    </div>
+                    <div class="tile">
+                        <h3>Accumulation = escalade</h3>
+                        <p>Les flags acceptés s’empilent et poussent le personnage vers des combinaisons improbables.
+                        </p>
+                    </div>
+                    <div class="tile">
+                        <h3>Humour + débat</h3>
+                        <p>Les choix déclenchent des discussions et révèlent les limites (ou non) de chacun.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <h2>Data Retention</h2>
-    <ul>
-        <li><strong>Local data</strong>: stored on the device until deleted by the user or app uninstallation.</li>
-        <li><strong>Advertising data</strong>: not stored by the publisher.</li>
-    </ul>
+        <section class="section" id="how">
+            <div class="container">
+                <div class="sectionHeader">
+                    <h2>Comment <span class="accent">ça marche</span></h2>
+                    <div class="hint">4 étapes • une partie fluide</div>
+                </div>
 
-    <h2>User Rights</h2>
-    <ul>
-        <li>Local data can be deleted by uninstalling the app or via device settings.</li>
-        <li>Advertising consent can be managed or withdrawn via the CMP.</li>
-    </ul>
+                <div class="steps">
+                    <div class="step">
+                        <div class="num">1</div>
+                        <div>
+                            <strong>Ajoute les joueurs</strong>
+                            <span>Lance la partie et chacun démarre son propre date.</span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="num">2</div>
+                        <div>
+                            <strong>Choisis : ACCEPTER ou STOP</strong>
+                            <span>Quand ton nom apparaît, accepte le flag… ou fuis le date.</span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="num">3</div>
+                        <div>
+                            <strong>Tout le monde finit par fuir</strong>
+                            <span>La partie avance jusqu’à ce que chaque joueur ait dit STOP.</span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="num">4</div>
+                        <div>
+                            <strong>Récap final</strong>
+                            <span>Découvrez les personnages improbables que vous avez créés.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <h2>Children</h2>
-    <p>The app is not intended for children.</p>
+        <section class="section" id="why">
+            <div class="container">
+                <div class="sectionHeader">
+                    <h2>Pourquoi <span class="accent">ça marche</span></h2>
+                    <div class="hint">aucun gagnant • tout le monde participe</div>
+                </div>
 
-    <h2>Stores</h2>
-    <p>Compliant with App Store and Google Play requirements.</p>
+                <div class="grid3">
+                    <div class="tile">
+                        <h3>Zéro friction</h3>
+                        <p>Deux boutons. Pas de stratégie complexe. L’humour vient des choix.</p>
+                    </div>
+                    <div class="tile">
+                        <h3>Contradictions maîtrisées</h3>
+                        <p>Le mélange de flags crée des personnages “impossibles” et mémorables.</p>
+                    </div>
+                    <div class="tile">
+                        <h3>Social-first</h3>
+                        <p>Le jeu sert de catalyseur : réactions, débats, anecdotes, punchlines.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <hr>
+        <section class="section">
+            <div class="container">
+                <div class="card finalCta">
+                    <div>
+                        <h3>Prêt à lancer une soirée Red Flags ?</h3>
+                        <p>Une page simple pour présenter le jeu. Remplace “Télécharger” par tes liens App Store /
+                            Google Play quand ils sont prêts.</p>
+                    </div>
+                    <div class="ctaRow">
+                        <a class="ctaPrimary" href="https://apple.co/4sSlwIw" role="button"
+                            aria-label="Télécharger (placeholder)">Télécharger sur iOS</a>
+                    </div>
+                    <div class="ctaRow">
+                        <a class="ctaPrimary"
+                            href="https://play.google.com/store/apps/details?id=com.g2lt.redflagsnights" role="button"
+                            aria-label="Télécharger (placeholder)">Télécharger sur Android</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <h1>Politique de confidentialité – Red Flags Nights</h1>
-    <p><em>Dernière mise à jour : 6 janvier 2026</em></p>
+    <footer>
+        <div class="container">
+            <div class="footerRow">
+                <div>© <span id="y"></span> Red Flags Nights</div>
+                <div>
+                    <a href="/privacy">Politique de confidentialité</a>
+                    <a href="/support">Support</a>
+                </div>
+            </div>
+        </div>
 
-    <h2>Responsable du traitement</h2>
-    <p>
-        Éditeur de l’application <em>Red Flags Nights</em><br>
-        Contact : <a href="mailto:guillaume.barthe.pro@gmail.com">guillaume.barthe.pro@gmail.com</a>
-    </p>
-
-    <h2>Description de l’app</h2>
-    <p>
-        <em>Red Flags Nights</em> est un party game local (2 à 6 joueurs), sans compte utilisateur et sans cloud.
-    </p>
-
-    <h2>Données traitées</h2>
-    <ul>
-        <li><strong>Données saisies par l’utilisateur (local uniquement)</strong> : prénoms ou pseudonymes des joueurs,
-            stockés exclusivement sur l’appareil.</li>
-        <li><strong>Contenu du jeu</strong> : les textes des cartes (“flags”) sont intégrés directement dans le code de
-            l’application et ne constituent pas des données personnelles.</li>
-        <li><strong>Données publicitaires (automatiques)</strong> : identifiants d’appareil et informations techniques
-            collectés par le SDK Google Mobile Ads (AdMob).</li>
-    </ul>
-
-    <h2>Finalités</h2>
-    <ul>
-        <li>Fonctionnement du jeu en local.</li>
-        <li>Diffusion d’annonces interstitielles, mesure agrégée des performances publicitaires et prévention de la
-            fraude.</li>
-    </ul>
-
-    <h2>Base légale</h2>
-    <ul>
-        <li>Exécution du contrat (fonctionnement de l’application).</li>
-        <li>Consentement (publicité personnalisée via CMP/UMP).</li>
-        <li>Intérêt légitime (publicité non personnalisée, sécurité et prévention de la fraude).</li>
-    </ul>
-
-    <h2>Partage des données</h2>
-    <p>
-        Partage limité à Google / AdMob.<br>
-        Politique de confidentialité Google :
-        <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>
-    </p>
-
-    <h2>Consentement et publicité</h2>
-    <ul>
-        <li>Gestion du consentement via CMP/UMP pour l’UE, l’EEE, le Royaume-Uni et la Suisse.</li>
-        <li>Annonces non personnalisées si le consentement à la publicité personnalisée n’est pas donné.</li>
-    </ul>
-
-    <h2>Ce que nous ne faisons pas</h2>
-    <ul>
-        <li>Aucun compte utilisateur, aucun stockage cloud.</li>
-        <li>Aucun SDK autre que Google Mobile Ads.</li>
-        <li>Aucune analytics propriétaire, géolocalisation, suivi inter-apps ou vente de données.</li>
-    </ul>
-
-    <h2>Durée de conservation</h2>
-    <ul>
-        <li><strong>Données locales</strong> : conservées sur l’appareil jusqu’à suppression par l’utilisateur ou
-            désinstallation.</li>
-        <li><strong>Données publicitaires</strong> : non conservées par l’éditeur.</li>
-    </ul>
-
-    <h2>Droits des utilisateurs</h2>
-    <ul>
-        <li>Suppression des données locales en désinstallant l’application ou via les paramètres de l’appareil.</li>
-        <li>Gestion ou retrait du consentement publicitaire via le CMP.</li>
-    </ul>
-
-    <h2>Enfants</h2>
-    <p>Application non destinée aux enfants.</p>
-
-    <h2>Stores</h2>
-    <p>Conforme aux exigences de l’App Store et de Google Play.</p>
-
+        <script>
+            document.getElementById("y").textContent = new Date().getFullYear();
+        </script>
+    </footer>
 </body>
 
 </html>
