@@ -1,0 +1,11 @@
+<!doctype html>
+<meta charset="utf-8">
+<script>
+    const IOS = "https://apps.apple.com/fr/app/red-flags-nights/id6757750062";
+    const ANDROID = "https://play.google.com/store/apps/details?id=com.g2lt.redflagsnights";
+    const ua = navigator.userAgent || "";
+
+    if (/android/i.test(ua)) location.replace(ANDROID);
+    else if (/iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) location.replace(IOS);
+    else location.replace(ANDROID);
+</script>
